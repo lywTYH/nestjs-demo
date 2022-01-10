@@ -1,18 +1,48 @@
-import { Controller, Get, Query, UseInterceptors } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Query,
+  UseInterceptors,
+} from '@nestjs/common';
 import { CountInterceptor } from '@/common/interceptor/response';
-
-import { FindAllQuery } from './dto';
+import { FindAllTicketDto } from './dto';
 import { TicketService } from './service';
 
 @UseInterceptors(CountInterceptor)
 @Controller('tickets')
 export class TicketController {
   constructor(private readonly ticketService: TicketService) {}
+
   @Get()
   findAll(
     @Query()
-    query: FindAllQuery,
+    query: FindAllTicketDto,
   ) {
     return this.ticketService.findAll(query);
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.ticketService.findOne(+id);
+  }
+
+  @Post()
+  create(@Body() createCatDto: CreateCatDto) {
+    return this.ticketService.create(createCatDto);
+  }
+
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updateCatDto: UpdateCatDto) {
+    return this.ticketService.update(+id, updateCatDto);
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.ticketService.remove(+id);
   }
 }

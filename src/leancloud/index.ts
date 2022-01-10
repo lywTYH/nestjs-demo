@@ -1,13 +1,22 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
-import * as AV from 'leancloud-storage';
-export class LeanCloudModule {
-  constructor() {
-    AV.init({
-      appId: process.env.LEANCLOUD_APP_ID!,
-      appKey: process.env.LEANCLOUD_APP_KEY!,
-      masterKey: process.env.LEANCLOUD_APP_MASTER_KEY,
-      serverURL: process.env.LEANCLOUD_API_HOST,
-    });
-    AV.setProduction(process.env.NODE_ENV === 'production');
+import { LeanCloudModule } from './module';
+import { LeancloudSchema } from './schema';
+
+class LeancloudEntity {
+  id: string;
+  createdAt: Date;
+  updatedAt: Date;
+  constructor(partial: Partial<LeancloudEntity>) {
+    Object.assign(this, partial);
   }
+  // ACL
 }
+
+// id!: string;
+
+// ACL?: RawACL | ACLBuilder;
+
+// createdAt!: Date;
+
+// updatedAt!: Date;
+
+export { LeanCloudModule, LeancloudSchema, LeancloudEntity };

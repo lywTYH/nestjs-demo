@@ -1,6 +1,6 @@
-import { LeancloudSchema } from '@/leancloud/leancloud.schema';
+import { LeancloudSchema, LeancloudEntity } from '@/leancloud';
 
-class TicketEntity {
+class TicketEntity extends LeancloudEntity {
   nid: number;
   title: string;
   content: string;
@@ -18,12 +18,11 @@ class TicketEntity {
   latestCustomerServiceReplyAt?: Date;
   firstCustomerServiceReplyAt?: Date;
   metaData?: Record<string, any>;
-
   constructor(partial: Partial<TicketEntity>) {
+    super(partial);
     Object.assign(this, partial);
   }
 }
 
 const ticketSchema = new LeancloudSchema('ticket');
-
 export { ticketSchema, TicketEntity };

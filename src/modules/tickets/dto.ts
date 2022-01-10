@@ -3,7 +3,7 @@ import { IsOptional } from 'class-validator';
 import { SortItem, transformSort } from '@/common/transform';
 import { IsValidSortArray } from '@/common/validation';
 
-export class FindAllQuery {
+export class FindAllTicketDto {
   @IsOptional()
   @IsValidSortArray([
     'status',

@@ -1,9 +1,13 @@
 import { Injectable } from '@nestjs/common';
-import { FindAllQuery } from './dto';
+import { LeancloudSchema } from '@/leancloud';
+import { FindAllTicketDto } from './dto';
+
+const ticketSchema = new LeancloudSchema('ticket');
 
 @Injectable()
 export class TicketService {
-  findAll(params: FindAllQuery) {
+  async findAll(params: FindAllTicketDto) {
+    const a = await ticketSchema.query().find();
     return {
       count: 123,
       data: [],
