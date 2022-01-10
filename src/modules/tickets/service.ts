@@ -5,9 +5,9 @@ import { ticketSchema } from './schema';
 @Injectable()
 export class TicketService {
   async findAll(params: FindAllTicketDto) {
-    const a = await ticketSchema.query().find();
+    // const a = await ticketSchema.query().find();
     return {
-      count: 123,
+      count: 1234,
       data: [],
     };
   }
