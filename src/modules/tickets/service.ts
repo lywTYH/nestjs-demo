@@ -1,8 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { LeancloudSchema } from '@/leancloud';
 import { FindAllTicketDto } from './dto';
-
-const ticketSchema = new LeancloudSchema('ticket');
+import { ticketSchema } from './schema';
 
 @Injectable()
 export class TicketService {
